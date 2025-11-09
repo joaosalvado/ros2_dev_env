@@ -1,5 +1,5 @@
 # syntax=docker/dockerfile:1.7
-FROM osrf/ros:jazzy-desktop-full-noble
+FROM osrf/ros:jazzy-desktop-full
 
 ARG USERNAME=ros
 ARG USER_UID=1000
