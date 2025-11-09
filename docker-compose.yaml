@@ -1,0 +1,25 @@
+services:
+  dev:
+    build:
+      context: .
+      args:
+        USER_UID: ${DOCKER_UID}
+        USER_GID: ${DOCKER_GID}
+    image: ros2-dev-env:jazzy
+    container_name: ros2-dev
+    network_mode: host
+    ipc: host
+    environment:
+      - DISPLAY=${DISPLAY}
+      - QT_X11_NO_MITSHM=1
+    volumes:
+      - /tmp/.X11-unix:/tmp/.X11-unix:rw
+      - ${HOME}/ros2_ws:/workspaces:cached   # <-- your shared workspace
+      - /dev:/dev
+      - /run/udev:/run/udev:ro
+    devices:
+      - /dev/dri:/dev/dri
+    user: "${DOCKER_UID}:${DOCKER_GID}"
+    shm_size: "1gb"
+    command: ["sleep", "infinity"]
+
